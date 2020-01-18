@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 import 'package:number_trivia_tutorial/core/error/failures.dart';
 import 'package:number_trivia_tutorial/core/error/exceptions.dart';
-import 'package:number_trivia_tutorial/core/plataform/network_info.dart';
+import 'package:number_trivia_tutorial/core/network/network_info.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/domain/entities/number_trivia.dart';
