@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/domain/entities/number_trivia.dart';
 
 
-@imutable
+@immutable
 abstract class NumberTriviaState extends Equatable {
   NumberTriviaState([List props = const <dynamic>[]]) : super(props);
 }
