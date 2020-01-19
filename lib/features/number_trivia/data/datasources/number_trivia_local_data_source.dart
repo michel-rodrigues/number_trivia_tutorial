@@ -7,7 +7,7 @@ import 'package:number_trivia_tutorial/features/number_trivia/data/models/number
 
 abstract class NumberTriviaLocalDataSource {
   Future<NumberTriviaModel> getLastNumberTrivia();
-  Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache);
+  Future<bool> cacheNumberTrivia(NumberTriviaModel triviaToCache);
 }
 
 const CACHED_NUMBER_TRIVIA = 'CACHED_NUMBER_TRIVIA';
@@ -22,15 +22,13 @@ class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
   @override
   Future<NumberTriviaModel> getLastNumberTrivia() async {
     final jsonString = sharedPreferences.getString(CACHED_NUMBER_TRIVIA);
-
     if (jsonString == null) throw CacheException();
-
     final numberTrivia = NumberTriviaModel.fromJson(convert.jsonDecode(jsonString));
     return Future.value(numberTrivia);
   }
 
   @override
-  Future<void> cacheNumberTrivia(NumberTriviaModel triviaToCache) {
+  Future<bool> cacheNumberTrivia(NumberTriviaModel triviaToCache) {
     return sharedPreferences.setString(
       CACHED_NUMBER_TRIVIA,
       convert.jsonEncode(triviaToCache.toJson())
