@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:number_trivia_tutorial/core/network/network_info.dart';
+import 'package:number_trivia_tutorial/core/utils/input_converter.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:number_trivia_tutorial/features/number_trivia/data/repositories/number_trivia_repository_impl.dart';
@@ -12,7 +13,7 @@ import 'package:number_trivia_tutorial/features/number_trivia/domain/usecases/ge
 import 'package:number_trivia_tutorial/features/number_trivia/presentation/bloc/bloc.dart';
 
 
-final serviceLocator = GetIt.instance
+final serviceLocator = GetIt.instance;
 
 Future<void> init() async {
   // Features
@@ -38,10 +39,10 @@ Future<void> init() async {
   );
 
   serviceLocator.registerLazySingleton<NumberTriviaRemoteDataSource>(
-    () => NumberTriviaRemoteDataSourceImpl(httpClient: serviceLocator(),
+    () => NumberTriviaRemoteDataSourceImpl(httpClient: serviceLocator()),
   );
   serviceLocator.registerLazySingleton<NumberTriviaLocalDataSource>(
-    () => NumberTriviaLocalDataSourceImpl(sharedPreferences: serviceLocator(),
+    () => NumberTriviaLocalDataSourceImpl(sharedPreferences: serviceLocator()),
   );
 
 
