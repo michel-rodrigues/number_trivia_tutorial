@@ -11,10 +11,9 @@ import 'package:number_trivia_tutorial/features/number_trivia/domain/usecases/ge
 import './bloc.dart';
 
 
-
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
-const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Input = The number must be positive or zero';
+const String INVALID_INPUT_FAILURE_MESSAGE = 'Invalid Input - The number must be positive or zero';
 
 
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {

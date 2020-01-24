@@ -10,9 +10,12 @@ class NumberTrivia extends Equatable {
   NumberTrivia({
     @required this.text,
     @required this.number,
-  }) : super([text, number]); // nesse contexto, o array dentro do super diz para
+  }) : super(); // nesse contexto, o array dentro do super diz para
                               // o equatable quais atributos usar na comparação
 
   String toString() => 'number: $number - text: $text';
+
+  @override
+  List<Object> get props => [text, number];
 
 }
