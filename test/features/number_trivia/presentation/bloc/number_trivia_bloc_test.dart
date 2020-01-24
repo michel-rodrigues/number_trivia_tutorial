@@ -53,7 +53,7 @@ void main() {
       'should call the InputConverter to validate and convert string to unsigned integer',
       () async {
         setUpMockInputConverterSuccess();
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
         await untilCalled(mockInputConverter.stringToUnsignedInterger(any));
         verify(mockInputConverter.stringToUnsignedInterger(numberString));
@@ -67,9 +67,9 @@ void main() {
         .thenReturn(Left(InvalidInputFailure()));
 
         final expectedEvents = [Empty(), Error(message: INVALID_INPUT_FAILURE_MESSAGE)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
       },
     );
@@ -82,7 +82,7 @@ void main() {
         when(mockGetConcreteNumberTrivia(any))
         .thenAnswer((_) async => Right(numberTrivia));
 
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
         await untilCalled(mockGetConcreteNumberTrivia(any));
         verify(mockGetConcreteNumberTrivia(Params(number: numberParsed)));
@@ -98,9 +98,9 @@ void main() {
         .thenAnswer((_) async => Right(numberTrivia));
 
         final expectedEvents = [Empty(), Loading(), Loaded(trivia: numberTrivia)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
       },
     );
@@ -114,9 +114,9 @@ void main() {
         .thenAnswer((_) async => Left(ServerFailure()));
 
         final expectedEvents = [Empty(), Loading(), Error(message: SERVER_FAILURE_MESSAGE)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
       },
     );
@@ -130,9 +130,9 @@ void main() {
         .thenAnswer((_) async => Left(CacheFailure()));
 
         final expectedEvents = [Empty(), Loading(), Error(message: CACHE_FAILURE_MESSAGE)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForConcreteNumber(numberString));
+        bloc.add(GetTriviaForConcreteNumber(numberString));
 
       },
     );
@@ -150,7 +150,7 @@ void main() {
         when(mockGetRandomNumberTrivia(any))
         .thenAnswer((_) async => Right(numberTrivia));
 
-        bloc.dispatch(GetTriviaForRandomNumber());
+        bloc.add(GetTriviaForRandomNumber());
 
         await untilCalled(mockGetRandomNumberTrivia(NoParams()));
         verify(mockGetRandomNumberTrivia(NoParams()));
@@ -165,9 +165,9 @@ void main() {
         .thenAnswer((_) async => Right(numberTrivia));
 
         final expectedEvents = [Empty(), Loading(), Loaded(trivia: numberTrivia)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForRandomNumber());
+        bloc.add(GetTriviaForRandomNumber());
 
       },
     );
@@ -180,9 +180,9 @@ void main() {
         .thenAnswer((_) async => Left(ServerFailure()));
 
         final expectedEvents = [Empty(), Loading(), Error(message: SERVER_FAILURE_MESSAGE)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForRandomNumber());
+        bloc.add(GetTriviaForRandomNumber());
 
       },
     );
@@ -195,9 +195,9 @@ void main() {
         .thenAnswer((_) async => Left(CacheFailure()));
 
         final expectedEvents = [Empty(), Loading(), Error(message: CACHE_FAILURE_MESSAGE)];
-        expectLater(bloc.state, emitsInOrder(expectedEvents));
+        expectLater(bloc, emitsInOrder(expectedEvents));
 
-        bloc.dispatch(GetTriviaForRandomNumber());
+        bloc.add(GetTriviaForRandomNumber());
 
       },
     );
